@@ -11,7 +11,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 1rem;
         }
-
     </style>
 </head>
 
@@ -19,14 +18,32 @@
 
     <div class="space">
         <h1>JSON load - API use</h1>
-       
+        EGLPS3687L
 
     </div>
 
     <script>
         // Load json file
 
+        const xhr = new XMLHttpRequest();
 
+        xhr.onload = function () {
+            if (this.status == 200) {
+                try{
+                    const resObj = JSON.parse(this.responseText);
+                    console.log(resObj);
+                }catch(e){
+                    console.error("There was a error in JSON. Could not parse");
+                }
+                console.log(this.responseText);
+                console.log(this.statusText);
+            } else {
+                console.warn("Did not receive 202 OK from response");
+            }
+        }
+
+        xhr.open('get', 'example_1.json');
+        xhr.send();
     </script>
 
 </body>
